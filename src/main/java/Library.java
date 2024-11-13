@@ -34,16 +34,10 @@ public class Library {
 
     // Permitir que un usuario tome un libro prestado
     public boolean borrowBook(User user, Book book) {
-        if (books.contains(book)) {
-            if (user.getType().equals("Student") && user.getBorrowedBooks().size() < 2) {
-                user.borrowBook(book);
-                books.remove(book);
-                return true;
-            } else if (user.getType().equals("Teacher") && user.getBorrowedBooks().size() < 5) {
-                user.borrowBook(book);
-                books.remove(book);
-                return true;
-            }
+        if (books.contains(book) && user.canBorrow()) {
+            user.borrowBook(book);
+            books.remove(book);
+            return true;
         }
         return false;
     }
@@ -56,19 +50,29 @@ public class Library {
         }
     }
 
-    // Generar un reporte de la biblioteca
-    public String generateReport() {
-        StringBuilder report = new StringBuilder("Library Report\n");
-        report.append("Available Books:\n");
+    // Generar una lista de libros
+    private void listBooks(StringBuilder report) {
         for (Book book : books) {
             report.append(book.getTitle()).append("\n");
         }
-        report.append("\nBorrowed Books:\n");
+    }
+
+    // Generar una lista de usuarios con los libros prestados
+    private void listBooksPertUsers(StringBuilder report) {
         for (User user : users) {
             for (Book borrowedBook : user.getBorrowedBooks()) {
                 report.append(borrowedBook.getTitle()).append(" borrowed by ").append(user.getName()).append("\n");
             }
         }
+    }
+
+    // Generar un reporte de la biblioteca
+    public String generateReport() {
+        StringBuilder report = new StringBuilder("Library Report\n");
+        report.append("Available Books:\n");
+        listBooks(report)
+        report.append("\nBorrowed Books:\n");
+        listBooksPertUsers(report)
         return report.toString();
     }
 

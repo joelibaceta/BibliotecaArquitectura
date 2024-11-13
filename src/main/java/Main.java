@@ -16,8 +16,8 @@ public class Main {
         library.addBook(book3);
 
         // Crear algunos usuarios
-        User student = new User("Alice", "Student");
-        User teacher = new User("Bob", "Teacher");
+        Student student = new Student("Alice");
+        Teacher teacher = new Teacher("Bob");
 
         // Registrar usuarios en la biblioteca
         library.registerUser(student);
