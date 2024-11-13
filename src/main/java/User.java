@@ -1,36 +1,21 @@
 package main.java;
 
-import java.util.ArrayList;
-import java.util.List;
+public abstract class User {
+    private final String name;
+    private final LoanAccount loanAccount;
 
-public class User {
-    private String name;
-    private String type; // "Student" or "Teacher"
-    private List<Book> borrowedBooks;
-
-    public User(String name, String type) {
+    public User(String name) {
         this.name = name;
-        this.type = type;
-        this.borrowedBooks = new ArrayList<>();
-    }
-
-    public void borrowBook(Book book) {
-        borrowedBooks.add(book);
-    }
-
-    public void returnBook(Book book) {
-        borrowedBooks.remove(book);
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public List<Book> getBorrowedBooks() {
-        return borrowedBooks;
+        this.loanAccount = new LoanAccount();
     }
 
     public String getName() {
         return name;
     }
+
+    public LoanAccount getLoanAccount() {
+        return loanAccount;
+    }
+
+    public abstract int getBorrowLimit();
 }
