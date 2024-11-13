@@ -3,27 +3,29 @@ package main.java;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public abstract class User {
     private String name;
-    private String type; // "Student" or "Teacher"
     private List<Book> borrowedBooks;
+    private BorrowPolicy borrowPolicy;
 
-    public User(String name, String type) {
+    public User(String name, BorrowPolicy borrowPolicy) {
         this.name = name;
-        this.type = type;
         this.borrowedBooks = new ArrayList<>();
+        this.borrowPolicy = borrowPolicy;
+    }
+
+    public boolean canBorrow() {
+        return borrowPolicy.canBorrow(borrowedBooks);
     }
 
     public void borrowBook(Book book) {
-        borrowedBooks.add(book);
+        if (canBorrow()) {
+            borrowedBooks.add(book);
+        }
     }
 
     public void returnBook(Book book) {
         borrowedBooks.remove(book);
-    }
-
-    public String getType() {
-        return type;
     }
 
     public List<Book> getBorrowedBooks() {
