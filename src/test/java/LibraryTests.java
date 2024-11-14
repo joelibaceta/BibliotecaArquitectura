@@ -19,13 +19,13 @@ class LibraryTests {
         politicaPrestamo = new BorrowLimitPolicy();
         library = new Library(catalog, politicaPrestamo);
 
-        alumno = new Student("Alice");
-        profesor = new Teacher("Bob");
+        alumno = new Student("Martin");
+        profesor = new Teacher("Tim Cook");
 
-        book1 = new Book("The Catcher in the Rye");
-        book2 = new Book("To Kill a Mockingbird");
-        book3 = new Book("1984");
-        book4 = new Book("Moby Dick");
+        book1 = new Book("Arquitectura Empresarial TOGAF");
+        book2 = new Book("Principios SOLID");
+        book3 = new Book("Arquitectura de Computadoras");
+        book4 = new Book("Patrones de Diseño");
 
         catalog.addBook(book1);
         catalog.addBook(book2);
@@ -51,7 +51,7 @@ class LibraryTests {
         assertTrue(library.borrowBook(profesor, book3));
         assertTrue(library.borrowBook(profesor, book4));
 
-        Book extraBook = new Book("War and Peace");
+        Book extraBook = new Book("Principios SOLID");
         catalog.addBook(extraBook);
         assertTrue(library.borrowBook(profesor, extraBook));
     }
