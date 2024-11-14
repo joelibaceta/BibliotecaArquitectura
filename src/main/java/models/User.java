@@ -1,16 +1,14 @@
-package main.java;
+package main.java.models;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class User {
     private String name;
-    private String type; // "Student" or "Teacher"
     private List<Book> borrowedBooks;
 
-    public User(String name, String type) {
+    public User(String name) {
         this.name = name;
-        this.type = type;
         this.borrowedBooks = new ArrayList<>();
     }
 
@@ -18,12 +16,12 @@ public class User {
         borrowedBooks.add(book);
     }
 
-    public void returnBook(Book book) {
-        borrowedBooks.remove(book);
+    public boolean canBorrow() {
+        return false;
     }
 
-    public String getType() {
-        return type;
+    public void returnBook(Book book) {
+        borrowedBooks.remove(book);
     }
 
     public List<Book> getBorrowedBooks() {

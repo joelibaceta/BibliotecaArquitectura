@@ -1,4 +1,4 @@
-package main.java;
+package main.java.models;
 
 public class Book {
     private String title;

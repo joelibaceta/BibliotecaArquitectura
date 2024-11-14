@@ -1,5 +1,8 @@
 package main.java;
 
+import main.java.models.Book;
+import main.java.models.User;
+
 public class LibraryReporter {
 
     private Library library;

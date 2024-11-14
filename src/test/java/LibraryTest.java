@@ -1,9 +1,11 @@
 package test.java;
 
-import main.java.Book;
+import main.java.models.Book;
 import main.java.Library;
 import main.java.LibraryReporter;
-import main.java.User;
+import main.java.models.Student;
+import main.java.models.Teacher;
+import main.java.models.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,8 +16,8 @@ public class LibraryTest {
     private LibraryReporter reporter;
     private Book book1;
     private Book book2;
-    private User student;
-    private User teacher;
+    private Student student;
+    private Teacher teacher;
 
     @BeforeEach
     public void setUp() {
@@ -24,8 +26,8 @@ public class LibraryTest {
         reporter = new LibraryReporter(library);
         book1 = new Book("The Catcher in the Rye");
         book2 = new Book("1984");
-        student = new User("Alice", "Student");
-        teacher = new User("Bob", "Teacher");
+        student = new Student("Alice");
+        teacher = new Teacher("Bob");
 
         library.addBook(book1);
         library.addBook(book2);
@@ -48,7 +50,7 @@ public class LibraryTest {
 
     @Test
     public void testRegisterUser() {
-        User newUser = new User("Charlie", "Student");
+        Student newUser = new Student("Charlie");
         library.registerUser(newUser);
         assertTrue(library.getUsers().contains(newUser), "La biblioteca debería contener el usuario registrado");
     }

@@ -1,5 +1,8 @@
 package main.java;
 
+import main.java.models.Book;
+import main.java.models.User;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -35,11 +38,7 @@ public class Library {
     // Permitir que un usuario tome un libro prestado
     public boolean borrowBook(User user, Book book) {
         if (books.contains(book)) {
-            if (user.getType().equals("Student") && user.getBorrowedBooks().size() < 2) {
-                user.borrowBook(book);
-                books.remove(book);
-                return true;
-            } else if (user.getType().equals("Teacher") && user.getBorrowedBooks().size() < 5) {
+            if (user.canBorrow()) {
                 user.borrowBook(book);
                 books.remove(book);
                 return true;

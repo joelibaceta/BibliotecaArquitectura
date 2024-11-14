@@ -1,5 +1,10 @@
 package main.java;
 
+import main.java.models.Book;
+import main.java.models.Student;
+import main.java.models.Teacher;
+import main.java.models.User;
+
 public class Main {
     public static void main(String[] args) {
         // Crear instancia de la biblioteca
@@ -17,8 +22,8 @@ public class Main {
         library.addBook(book3);
 
         // Crear algunos usuarios
-        User student = new User("Alice", "Student");
-        User teacher = new User("Bob", "Teacher");
+        Student student = new Student("Alice");
+        Teacher teacher = new Teacher("Bob");
 
         // Registrar usuarios en la biblioteca
         library.registerUser(student);
