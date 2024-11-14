@@ -11,11 +11,11 @@ public class Main {
         Library library = new Library(catalog, politicaPrestamo);
 
         // Crear libros
-        Book book1 = new Book("The Catcher in the Rye");
-        Book book2 = new Book("To Kill a Mockingbird");
-        Book book3 = new Book("1984");
-        Book book4 = new Book("Moby Dick");
-        Book book5 = new Book("War and Peace");
+        Book book1 = new Book("Arquitectura Empresarial TOGAF");
+        Book book2 = new Book("Principios SOLID");
+        Book book3 = new Book("Arquitectura de Computadoras");
+        Book book4 = new Book("Codigo Limpio");
+        Book book5 = new Book("Algoritmos");
 
         // Agregar libros al catálogo de la biblioteca
         catalog.addBook(book1);
@@ -25,8 +25,8 @@ public class Main {
         catalog.addBook(book5);
 
         // Crear usuarios de tipo Alumno y Profesor
-        User alumno = new Student("Alice");
-        User profesor = new Teacher("Bob");
+        User alumno = new Student("Martin");
+        User profesor = new Teacher("Tim Cook");
 
         // Registrar los usuarios en la biblioteca
         library.registerUser(alumno);
