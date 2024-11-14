@@ -1,56 +1,71 @@
 package main.java;
 
 public class Main {
+
     public static void main(String[] args) {
-        // Crear instancia de la biblioteca
-        Library library = new Library();
+        LibraryCatalog catalog = new LibraryCatalog();
+        PolicysBorrow politicaPrestamo = new BorrowLimitPolicy();
 
-        // Crear algunos libros
-        Book book1 = new Book("The Catcher in the Rye");
-        Book book2 = new Book("To Kill a Mockingbird");
-        Book book3 = new Book("1984");
+        Library library = new Library(catalog, politicaPrestamo);
 
-        // Agregar libros a la biblioteca
-        library.addBook(book1);
-        library.addBook(book2);
-        library.addBook(book3);
+        Book book1 = new Book("Arquitectura Empresarial TOGAF");
+        Book book2 = new Book("Principios SOLID");
+        Book book3 = new Book("Arquitectura de Computadoras");
+        Book book4 = new Book("Codigo Limpio");
+        Book book5 = new Book("Algoritmos");
 
-        // Crear algunos usuarios
-        User student = new User("Alice", "Student");
-        User teacher = new User("Bob", "Teacher");
+        catalog.addBook(book1);
+        catalog.addBook(book2);
+        catalog.addBook(book3);
+        catalog.addBook(book4);
+        catalog.addBook(book5);
 
-        // Registrar usuarios en la biblioteca
-        library.registerUser(student);
-        library.registerUser(teacher);
+        User alumno = new Student("Martin");
+        User profesor = new Teacher("Tim Cook");
 
-        // Realizar algunos préstamos
-        System.out.println("Préstamos de libros:");
-        if (library.borrowBook(student, book1)) {
-            System.out.println(student.getName() + " ha tomado prestado: " + book1.getTitle());
-        } else {
-            System.out.println(student.getName() + " no pudo tomar prestado: " + book1.getTitle());
+        library.registerUser(alumno);
+        library.registerUser(profesor);
+
+        System.out.println("Préstamos para Alumno:");
+        if (library.borrowBook(alumno, book1)) {
+            System.out.println(alumno.getName() + " ha tomado prestado: " + book1.getTitle());
+        }
+        if (library.borrowBook(alumno, book2)) {
+            System.out.println(alumno.getName() + " ha tomado prestado: " + book2.getTitle());
+        }
+        if (library.borrowBook(alumno, book3)) {
+            System.out.println(alumno.getName() + " ha tomado prestado: " + book3.getTitle());
+        }
+        if (!library.borrowBook(alumno, book4)) {
+            System.out.println(alumno.getName() + " no pudo tomar prestado: " + book4.getTitle() + " (límite alcanzado)");
         }
 
-        if (library.borrowBook(teacher, book2)) {
-            System.out.println(teacher.getName() + " ha tomado prestado: " + book2.getTitle());
-        } else {
-            System.out.println(teacher.getName() + " no pudo tomar prestado: " + book2.getTitle());
+        System.out.println("\nPréstamos para Profesor:");
+        if (library.borrowBook(profesor, book1)) {
+            System.out.println(profesor.getName() + " ha tomado prestado: " + book1.getTitle());
+        }
+        if (library.borrowBook(profesor, book2)) {
+            System.out.println(profesor.getName() + " ha tomado prestado: " + book2.getTitle());
+        }
+        if (library.borrowBook(profesor, book3)) {
+            System.out.println(profesor.getName() + " ha tomado prestado: " + book3.getTitle());
+        }
+        if (library.borrowBook(profesor, book4)) {
+            System.out.println(profesor.getName() + " ha tomado prestado: " + book4.getTitle());
+        }
+        if (library.borrowBook(profesor, book5)) {
+            System.out.println(profesor.getName() + " ha tomado prestado: " + book5.getTitle());
         }
 
-        // Intentar tomar otro libro para el estudiante, hasta el límite
-        if (library.borrowBook(student, book3)) {
-            System.out.println(student.getName() + " ha tomado prestado: " + book3.getTitle());
-        } else {
-            System.out.println(student.getName() + " no pudo tomar prestado: " + book3.getTitle() + " (límite alcanzado)");
-        }
-
-        // Devolver un libro
         System.out.println("\nDevolución de libros:");
-        library.returnBook(student, book1);
-        System.out.println(student.getName() + " ha devuelto: " + book1.getTitle());
+        library.returnBook(alumno, book1);
+        System.out.println(alumno.getName() + " ha devuelto: " + book1.getTitle());
 
-        // Generar y mostrar el reporte de la biblioteca
-        System.out.println("\nReporte de la Biblioteca:");
-        System.out.println(library.generateReport());
+        System.out.println("\nDisponibilidad de libros después de la devolución:");
+        System.out.println(book1.getTitle() + " está disponible: " + catalog.isBookAvailable(book1));
+
+        LibraryReport reportGenerator = new LibraryReport();
+        String report = reportGenerator.generateReport(library);
+        System.out.println(report);
     }
 }
