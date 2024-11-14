@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         // Crear instancia de la biblioteca
         Library library = new Library();
+        LibraryReporter reporter = new LibraryReporter(library);
 
         // Crear algunos libros
         Book book1 = new Book("The Catcher in the Rye");
@@ -51,6 +52,6 @@ public class Main {
 
         // Generar y mostrar el reporte de la biblioteca
         System.out.println("\nReporte de la Biblioteca:");
-        System.out.println(library.generateReport());
+        System.out.println(reporter.generateReport());
     }
 }

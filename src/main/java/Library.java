@@ -56,22 +56,6 @@ public class Library {
         }
     }
 
-    // Generar un reporte de la biblioteca
-    public String generateReport() {
-        StringBuilder report = new StringBuilder("Library Report\n");
-        report.append("Available Books:\n");
-        for (Book book : books) {
-            report.append(book.getTitle()).append("\n");
-        }
-        report.append("\nBorrowed Books:\n");
-        for (User user : users) {
-            for (Book borrowedBook : user.getBorrowedBooks()) {
-                report.append(borrowedBook.getTitle()).append(" borrowed by ").append(user.getName()).append("\n");
-            }
-        }
-        return report.toString();
-    }
-
     // Método para verificar si un libro está disponible en la biblioteca
     public boolean isBookAvailable(Book book) {
         return books.contains(book);

@@ -2,6 +2,7 @@ package test.java;
 
 import main.java.Book;
 import main.java.Library;
+import main.java.LibraryReporter;
 import main.java.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LibraryTest {
 
     private Library library;
+    private LibraryReporter reporter;
     private Book book1;
     private Book book2;
     private User student;
@@ -19,6 +21,7 @@ public class LibraryTest {
     public void setUp() {
         // Inicializar la biblioteca y objetos de prueba
         library = new Library();
+        reporter = new LibraryReporter(library);
         book1 = new Book("The Catcher in the Rye");
         book2 = new Book("1984");
         student = new User("Alice", "Student");
@@ -88,7 +91,7 @@ public class LibraryTest {
     @Test
     public void testGenerateReport() {
         library.borrowBook(student, book1);
-        String report = library.generateReport();
+        String report = reporter.generateReport();
         assertTrue(report.contains("Available Books:"), "El reporte debería contener la sección de libros disponibles");
         assertTrue(report.contains("Borrowed Books:"), "El reporte debería contener la sección de libros prestados");
         assertTrue(report.contains("1984"), "El reporte debería listar el libro '1984' como disponible");
