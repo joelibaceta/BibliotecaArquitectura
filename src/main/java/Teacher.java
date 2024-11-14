@@ -3,27 +3,27 @@ package main.java;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class Teacher implements IUser {
     private String name;
-    private String type; // "Student" or "Teacher"
     private List<Book> borrowedBooks;
 
-    public User(String name, String type) {
+    public Teacher(String name) {
         this.name = name;
-        this.type = type;
         this.borrowedBooks = new ArrayList<>();
     }
 
-    public void borrowBook(Book book) {
-        borrowedBooks.add(book);
+    public boolean borrowBook(Book book) {
+        boolean result=false;
+        if (borrowedBooks.size()<5){
+            borrowedBooks.add(book);
+            result=true;
+        }
+
+        return result;
     }
 
     public void returnBook(Book book) {
         borrowedBooks.remove(book);
-    }
-
-    public String getType() {
-        return type;
     }
 
     public List<Book> getBorrowedBooks() {

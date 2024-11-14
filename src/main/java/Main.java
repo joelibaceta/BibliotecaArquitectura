@@ -16,12 +16,8 @@ public class Main {
         library.addBook(book3);
 
         // Crear algunos usuarios
-        User student = new User("Alice", "Student");
-        User teacher = new User("Bob", "Teacher");
-
-        // Registrar usuarios en la biblioteca
-        library.registerUser(student);
-        library.registerUser(teacher);
+        IUser student = new Student("Alice");
+        IUser teacher = new Teacher("Bob");
 
         // Realizar algunos préstamos
         System.out.println("Préstamos de libros:");
@@ -49,8 +45,5 @@ public class Main {
         library.returnBook(student, book1);
         System.out.println(student.getName() + " ha devuelto: " + book1.getTitle());
 
-        // Generar y mostrar el reporte de la biblioteca
-        System.out.println("\nReporte de la Biblioteca:");
-        System.out.println(library.generateReport());
     }
 }
