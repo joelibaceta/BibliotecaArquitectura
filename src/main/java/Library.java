@@ -33,4 +33,12 @@ public class Library {
         usuario.getLoanAccount().removeBook(book);
         catalog.addBook(book);
     }
+
+    public LibraryCatalog getCatalog() {
+        return catalog;
+    }
+
+    public List<User> getUsuarios() {
+        return usuarios;
+    }
 }
