@@ -1,11 +1,11 @@
-package main.java;
+package core;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class User {
     private String name;
-    private String type; // "Student" or "Teacher"
+    private String type; // Ejemplo: "Student", "Teacher"
     private List<Book> borrowedBooks;
 
     public User(String name, String type) {
@@ -14,12 +14,8 @@ public class User {
         this.borrowedBooks = new ArrayList<>();
     }
 
-    public void borrowBook(Book book) {
-        borrowedBooks.add(book);
-    }
-
-    public void returnBook(Book book) {
-        borrowedBooks.remove(book);
+    public String getName() {
+        return name;
     }
 
     public String getType() {
@@ -30,7 +26,11 @@ public class User {
         return borrowedBooks;
     }
 
-    public String getName() {
-        return name;
+    public void borrowBook(Book book) {
+        borrowedBooks.add(book);
+    }
+
+    public void returnBook(Book book) {
+        borrowedBooks.remove(book);
     }
 }

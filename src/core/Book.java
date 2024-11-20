@@ -1,4 +1,4 @@
-package main.java;
+package core;
 
 public class Book {
     private String title;
